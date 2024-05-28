@@ -12,7 +12,7 @@ def square(number: int) -> int:
 
     if not 1 <= number <= 64:
         raise ValueError("square must be between 1 and 64")
-    return 2 ** (number - 1)
+    return 1 << number - 1
 
 
 def total() -> int:
@@ -21,9 +21,12 @@ def total() -> int:
     :return: int - total number of grains in a board of chess.
     """
 
-    total_of_grains: int = 0
+    total_of_grains: int
 
-    for n in range(1, 65):
-        total_of_grains += square(n)
+    for n in range(65):
+        total_of_grains = 1 << n
 
-    return total_of_grains
+    return total_of_grains - 1
+
+    # return 1 * (1 - 2 ** 64) / (1 - 2)
+    # return 1 * (1 - (1 << 64)) / (1 - 2)
